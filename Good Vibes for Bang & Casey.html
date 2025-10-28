@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Good Vibes for Bang & Casey</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7dd3fc;
+      --accent-2:#fca5a5;
+      --glass: rgba(255,255,255,0.05);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071129 0%, #0f1724 100%);
+      color:#e6eef8;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .container{
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:28px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.7);
+      backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .logo{
+      width:68px;
+      height:68px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent), var(--accent-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#052027;
+      font-size:20px;
+      box-shadow: 0 6px 20px rgba(125,211,252,0.12), inset 0 -6px 18px rgba(0,0,0,0.18);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:#bcd7ee;opacity:0.95}
+    .grid{display:grid;grid-template-columns:1fr 1fr; gap:18px; margin-top:18px}
+    .card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      border:1px solid var(--glass);
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+    }
+
+    /* Bang character */
+    .neck{
+      width:120px;
+      height:120px;
+      background: linear-gradient(180deg,#ffd7b6,#ffb48a);
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    }
+    .face{
+      width:88px;height:88px;border-radius:10px;background:#fff6ee;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .eyes{display:flex;gap:8px;margin-top:6px}
+    .eye{width:10px;height:10px;border-radius:50%;background:#222}
+    .mouth{width:22px;height:10px;border-radius:6px;background:#b34a3a;margin-top:8px}
+
+    /* scratch animation */
+    .scratching{
+      animation: scratch 1s linear infinite;
+      transform-origin: 50% 0%;
+    }
+    @keyframes scratch{
+      0%{transform: translateY(0) rotate(0deg)}
+      25%{transform: translateY(-6px) rotate(6deg)}
+      50%{transform: translateY(0) rotate(0deg)}
+      75%{transform: translateY(-6px) rotate(-6deg)}
+      100%{transform: translateY(0) rotate(0deg)}
+    }
+
+    .btn-row{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+    button{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.12));
+      color:var(--accent);
+      border:1px solid rgba(125,211,252,0.18);
+      padding:10px 14px;border-radius:10px;
+      cursor:pointer;font-weight:600;
+      transition:transform .14s ease, box-shadow .14s ease;
+    }
+    button:active{transform:translateY(2px)}
+    .primary{background:linear-gradient(180deg,var(--accent), #60a5fa); color:#042033;border:none}
+    .danger{background:linear-gradient(180deg,var(--accent-2), #fb7185); color:#22060a;border:none}
+
+    /* Casey card */
+    .casey{
+      width:140px;height:140px;border-radius:50%;background:linear-gradient(180deg,#ffe6f0,#ffd3e0);display:flex;align-items:center;justify-content:center;
+      box-shadow: 0 8px 26px rgba(252,165,165,0.12);
+      transform-origin:center;
+      transition:transform .3s ease;
+    }
+    .casey.happy{transform: scale(1.12) rotate(-3deg)}
+    .smile{font-size:48px}
+
+    /* confetti */
+    .confetti{
+      pointer-events:none;
+      position:absolute;inset:0;overflow:hidden;
+    }
+    .confetti .c{
+      position:absolute; width:10px;height:16px;opacity:0;transform:translateY(-10vh) rotate(0deg);
+      animation: fall linear forwards;
+    }
+    @keyframes fall{
+      0%{opacity:1; transform: translateY(-10vh) rotate(0deg)}
+      100%{opacity:1; transform: translateY(110vh) rotate(540deg)}
+    }
+
+    footer{margin-top:18px;text-align:center;color:#9fb8d6;font-size:13px}
+    @media (max-width:720px){
+      .grid{grid-template-columns:1fr; gap:12px}
+      header{gap:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="title">
+    <header>
+      <div class="logo" aria-hidden="true">BG</div>
+      <div>
+        <h1 id="title">Good vibes — For Bang & Casey</h1>
+        <p class="lead">Tiny interactive page to nudge habits & spread some joy.</p>
+      </div>
+    </header>
+
+    <div class="grid" role="region" aria-label="Actions">
+      <section class="card" aria-labelledby="bangTitle">
+        <h2 id="bangTitle">Help Bang: stop scratching his neck</h2>
+        <div style="margin-top:12px">
+          <div class="neck" id="bangNeck" aria-hidden="false">
+            <div class="face" id="face">
+              <div class="eyes">
+                <div class="eye"></div><div class="eye"></div>
+              </div>
+              <div class="mouth"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row" role="group" aria-label="Bang controls">
+          <button id="toggleScratch" title="Toggle scratching">Stop scratching</button>
+          <button id="reminder" class="primary" title="Give a gentle reminder">Gentle reminder</button>
+          <button id="applyBandaid" class="danger" title="Apply a virtual bandaid">Apply bandaid</button>
+        </div>
+        <p id="bangNote" style="margin-top:12px;color:#bcd7ee;opacity:0.95">Current: <strong id="bangState">scratching</strong></p>
+      </section>
+
+      <section class="card" aria-labelledby="caseyTitle">
+        <h2 id="caseyTitle">Make Casey extremely happy</h2>
+        <div style="margin-top:12px">
+          <div class="casey" id="caseyFace" role="img" aria-label="Casey happy face">
+            <div class="smile">😊</div>
+          </div>
+        </div>
+
+        <div class="btn-row" role="group" aria-label="Casey controls">
+          <button id="makeHappy" class="primary">Make Casey extremely happy</button>
+          <button id="calmDown">Calm Casey</button>
+        </div>
+        <div id="caseyNote" style="margin-top:12px;color:#bcd7ee;opacity:0.95">Casey is: <strong id="caseyState">content</strong></div>
+
+        <div class="confetti" id="confettiLayer" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <footer>
+      Save this file and open in your browser. Tiny reminder: gentle habits > sudden stops. ✨
+    </footer>
+  </div>
+
+  <script>
+    // Bang logic
+    const bangNeck = document.getElementById('bangNeck');
+    const toggleBtn = document.getElementById('toggleScratch');
+    const bangStateEl = document.getElementById('bangState');
+    const reminderBtn = document.getElementById('reminder');
+    const bandaidBtn = document.getElementById('applyBandaid');
+
+    // initial: scratching
+    let scratching = true;
+    function updateBangUI(){
+      if(scratching){
+        bangNeck.classList.add('scratching');
+        bangStateEl.textContent = 'scratching';
+        toggleBtn.textContent = 'Stop scratching';
+      } else {
+        bangNeck.classList.remove('scratching');
+        bangStateEl.textContent = 'not scratching';
+        toggleBtn.textContent = 'Allow a little itch';
+      }
+    }
+    updateBangUI();
+
+    toggleBtn.addEventListener('click', ()=>{
+      scratching = !scratching;
+      updateBangUI();
+      // small haptic-like pulse animation
+      bangNeck.animate([{transform:'scale(1)'},{transform:'scale(1.04)'},{transform:'scale(1)'}],{duration:300});
+    });
+
+    reminderBtn.addEventListener('click', ()=>{
+      // show a short tooltip-style note
+      showToast("Gentle reminder sent: stretch, hydrate, breathe.");
+      reminderBtn.animate([{transform:'translateY(0)'},{transform:'translateY(-6px)'},{transform:'translateY(0)'}],{duration:400});
+    });
+
+    bandaidBtn.addEventListener('click', ()=>{
+      const existing = document.getElementById('bandaid');
+      if(existing) { existing.remove(); showToast('Bandaid removed.'); return; }
+      const b = document.createElement('div');
+      b.id = 'bandaid';
+      b.style.position='absolute';
+      b.style.width='36px';
+      b.style.height='18px';
+      b.style.background='linear-gradient(180deg,#fff2f2,#ffdede)';
+      b.style.borderRadius='6px';
+      b.style.left='calc(50% + 18px)';
+      b.style.top='56%';
+      b.style.transform='translate(-50%,-50%) rotate(-18deg)';
+      b.style.boxShadow='0 6px 16px rgba(0,0,0,0.28)';
+      bangNeck.appendChild(b);
+      showToast('Applied a virtual bandaid — gentle care!');
+    });
+
+    // Casey logic
+    const caseyFace = document.getElementById('caseyFace');
+    const makeHappy = document.getElementById('makeHappy');
+    const calmDown = document.getElementById('calmDown');
+    const caseyState = document.getElementById('caseyState');
+    const confettiLayer = document.getElementById('confettiLayer');
+
+    function spawnConfetti(count = 40){
+      confettiLayer.innerHTML = '';
+      const colors = ['#f97316','#f43f5e','#f59e0b','#34d399','#60a5fa','#7c3aed'];
+      for(let i=0;i<count;i++){
+        const c = document.createElement('div');
+        c.className='c';
+        c.style.left = Math.random()*100 + '%';
+        c.style.top = (-5 - Math.random()*10) + 'vh';
+        c.style.width = (6 + Math.random()*8) + 'px';
+        c.style.height = (10 + Math.random()*12) + 'px';
+        c.style.background = colors[Math.floor(Math.random()*colors.length)];
+        c.style.transform = `rotate(${Math.random()*360}deg)`;
+        c.style.animationDuration = (1.4 + Math.random()*1.4) + 's';
+        c.style.animationDelay = (Math.random()*0.2) + 's';
+        confettiLayer.appendChild(c);
+      }
+    }
+
+    makeHappy.addEventListener('click', ()=>{
+      caseyFace.classList.add('happy');
+      caseyState.textContent = 'extremely happy 🎉';
+      spawnConfetti(60);
+      // clear confetti after a short while
+      setTimeout(()=> confettiLayer.innerHTML = '', 2500);
+      // joyful wiggle
+      caseyFace.animate([{transform:'scale(1)'},{transform:'scale(1.14) rotate(6deg)'},{transform:'scale(1) rotate(-6deg)'},{transform:'scale(1.06)'}],{duration:800});
+      showToast("Casey is now extremely happy! 🎊");
+    });
+
+    calmDown.addEventListener('click', ()=>{
+      caseyFace.classList.remove('happy');
+      caseyState.textContent = 'calm';
+      confettiLayer.innerHTML = '';
+      showToast("Casey is calm and content.");
+    });
+
+    // tiny toast system
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.position='fixed';
+      t.style.left='50%';
+      t.style.bottom='28px';
+      t.style.transform='translateX(-50%)';
+      t.style.background='rgba(7,12,20,0.9)';
+      t.style.color='#dceefd';
+      t.style.padding='10px 14px';
+      t.style.borderRadius='12px';
+      t.style.boxShadow='0 8px 30px rgba(2,6,23,0.7)';
+      t.style.zIndex=9999;
+      document.body.appendChild(t);
+      t.animate([{opacity:0, transform:'translateY(6px)'},{opacity:1, transform:'translateY(0)'}],{duration:220});
+      setTimeout(()=> {
+        t.animate([{opacity:1, transform:'translateY(0)'},{opacity:0, transform:'translateY(10px)'}],{duration:300});
+        setTimeout(()=> t.remove(),300);
+      }, 1600);
+    }
+
+    // Accessibility: keyboard triggers
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === '1') toggleBtn.click();
+      if(e.key === '2') reminderBtn.click();
+      if(e.key === '3') bandaidBtn.click();
+      if(e.key === 'h') makeHappy.click();
+      if(e.key === 'c') calmDown.click();
+    });
+
+    // friendly hint
+    setTimeout(()=> showToast("Tip: press 1/2/3 for Bang controls, h/c for Casey"), 900);
+  </script>
+</body>
+</html>
